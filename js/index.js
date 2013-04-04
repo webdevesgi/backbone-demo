@@ -1,26 +1,20 @@
 (function () {
 
-require(['jquery', 'backbone', 'BookListView'], function ($, Backbone, BookListView) {
+define(['jquery', 'backbone', 'BookListView'], function ($, Backbone, BookListView) {
 
-  var IndexView = Backbone.View.extend({
+  return Backbone.View.extend({
 
     el: '#main',
 
     initialize: function () {
-      var self = this;
-      console.log('Initialize view IndexView');
       this.render();
-      this.bookListView = new BookListView();
-      this.bookListView.collection.fetch();
     },
 
     render: function () {
-      this.$el.html('<h2>List of books</h2><ul id="book_list"></ul>');
+      this.$el.html('<h2>Index</h2><p>Go to <a href="#books">the list of books</a></p>');
     }
 
   });
-
-  var indexView = new IndexView();
 
 });
 

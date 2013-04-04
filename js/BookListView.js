@@ -2,7 +2,7 @@
 
 define(['jquery', 'backbone', 'BookList'], function ($, Backbone, BookList) {
 
-  var BookListView = Backbone.View.extend({
+  return Backbone.View.extend({
 
     el: '#book_list',
     template: _.template($('#template_book').text()),
@@ -10,6 +10,7 @@ define(['jquery', 'backbone', 'BookList'], function ($, Backbone, BookList) {
     initialize: function () {
       var self = this;
       console.log('Initialize view BookListView');
+      // Create collection
       this.collection = new BookList();
       this.collection.on('reset', function (books) {
         self.render();
@@ -27,8 +28,6 @@ define(['jquery', 'backbone', 'BookList'], function ($, Backbone, BookList) {
     }
 
   });
-
-  return BookListView;
 
 });
 

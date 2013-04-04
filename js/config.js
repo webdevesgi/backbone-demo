@@ -9,19 +9,25 @@
         exports: '_'
       },
       backbone: {
-        deps: ['lodash'],
+        deps: ['lodash', 'jquery'],
         exports: 'Backbone'
       }
     },
     paths: {
       bootstrap: 'lib/bootstrap.min',
       lodash:    'lib/lodash',
-      backbone:  'lib/backbone-min',
+      backbone:  'lib/backbone',
       jquery:    'lib/jquery.min'
     },
     baseUrl: './js/'
   });
 
-  require(['index']);
+  require(['Router'], function (Router) {
+    // Create router
+    var router = new Router();
+    // Launch application
+    // You don't need this if you're not using router
+    Backbone.history.start();
+  });
 
 }).call(this);
