@@ -5,29 +5,17 @@ require(['jquery', 'backbone', 'BookListView'], function ($, Backbone, BookListV
   var IndexView = Backbone.View.extend({
 
     el: '#main',
-    apiUrl: '/api/',
 
     initialize: function () {
+      var self = this;
       console.log('Initialize view IndexView');
+      this.render();
       this.bookListView = new BookListView();
-
-      this.makeRequest('books', {});
+      this.bookListView.collection.fetch();
     },
 
-    makeRequest: function (obj, params) {
-      var self = this;
-      $.ajax({
-        url: this.apiUrl + obj + '.json',
-        method: 'GET',
-        data: params,
-        success: function (data) {
-          self.bookListView.collection.add(data);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          console.error(textStatus);
-          console.error(errorThrown);
-        }
-      });
+    render: function () {
+      this.$el.html('<h2>List of books</h2><ul id="book_list"></ul>');
     }
 
   });
